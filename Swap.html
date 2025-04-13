@@ -1,11 +1,91 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>موقعي الشخصي</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحه الرائيسيه
+    </title>
+    <link rel="stylesheet" href="homepage.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <h1>مرحبًا بك في موقعي</h1>
-    <p>هذا الموقع تم رفعه باستخدام GitHub Pages.</p>
+    <div class="header">
+        <div class="logo">موقع مقايضة الحسابات</div>
+    </div>    
+    <div class="main">
+        <h1>مرحبًا بك في أكبر سوق للمقايضة الرقمية</h1>
+        <p>بيع وشراء الحسابات بكل أمان وسهولة</p>
+        
+        <div class="buttons-container">
+            <button class="btn" id="loginBtn" onclick="window.open('login.html', '_blank')">
+                تسجيل الدخول / إنشاء حساب
+            </button> 
+
+
+
+
+            <!-- ليس له لزمه  -->
+            <!-- <button class="btn btn-guest" id="guestBtn" onclick="window.open('production.html', '_blank')"> 
+                الدخول كضيف
+            </button>-->
+            <button class="btn btn-contact" id="contactBtn" onclick="window.open('https://wa.me/201276007238', '_blank')">
+                تواصل معنا
+            </button>
+        </div>
+    </div>
+
+    <!-- زر القائمة في الزاوية -->
+    <button class="menu-btn" id="menuBtn">
+        <i class='bx bx-menu'></i>
+    </button>
+
+    <!-- النافذة الجانبية -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>القائمة الجانبية</h3>
+            <button class="close-btn" id="closeBtn">
+                <i class='bx bx-x'></i>
+            </button>
+        </div>
+        
+        <div class="sidebar-content">
+            <button class="sidebar-btn" onclick="window.open('login.html', '_blank')">
+                <i class='bx bx-log-in'></i> تسجيل الدخول
+            </button>
+            <!-- <button class="sidebar-btn" onclick="window.open('register.html', '_blank')">
+                <i class='bx bx-user-plus'></i> إنشاء حساب
+            </button> -->
+            <button class="sidebar-btn" onclick="window.open('https://wa.me/201276007238', '_blank')">
+                <i class='bx bx-envelope'></i> تواصل معنا
+            </button>
+        </div>
+    </div>
+
+    <!-- طبقة التعتيم -->
+    <div class="overlay" id="overlay"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('menuBtn');
+            const sidebar = document.getElementById('sidebar');
+            const closeBtn = document.getElementById('closeBtn');
+            const overlay = document.getElementById('overlay');
+            
+            menuBtn.addEventListener('click', () => {
+                sidebar.classList.add('active');
+                overlay.classList.add('active');
+            });
+            
+            closeBtn.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+            
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
