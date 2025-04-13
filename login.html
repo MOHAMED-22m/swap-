@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="reset-card">
+        <div class="reset-header">
+            <div class="reset-logo">موقع المقايضة</div>
+            <h1 class="reset-title">تسجيل الدخول</h1>
+            <p class="reset-description">أدخل بريدك الإلكتروني وسنرسل لك رابطًا لتأكيد الدخول</p>
+        </div>
+
+        <div id="errorMessage" class="message error-message"></div>
+        <div id="successMessage" class="message success-message"></div>
+
+        <form id="resetForm" class="reset-form">
+            <div class="form-group">
+                <label for="email" class="form-label">البريد الإلكتروني</label>
+                <input type="email" id="email" class="form-input" placeholder="example@domain.com" required>
+            </div>
+
+            <button type="submit" class="reset-btn">إرسال رابط التعيين</button>
+        </form>
+
+        <div><button class="back-link" onclick="window.location.href='homepage.html'">العودة إلى الصفحة الرئيسية</button></div>
+    </div>
+
+    <script>
+        document.getElementById('resetForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const errorElement = document.getElementById('errorMessage');
+            const successElement = document.getElementById('successMessage');
+
+            // إخفاء الرسائل السابقة
+            errorElement.style.display = 'none';
+            successElement.style.display = 'none';
+
+            // التحقق من صحة البريد الإلكتروني
+            if (!validateEmail(email)) {
+                errorElement.textContent = 'الرجاء إدخال بريد إلكتروني صحيح';
+                errorElement.style.display = 'block';
+                return;
+            }
+
+            // توليد كود عشوائي لتضمينه في الرابط
+            const code = generateCode();
+            const resetLink = `https://yourdomain.com/production.html?code=${code}`;
+
+            // هنا يمكنك إضافة كود إرسال البريد الإلكتروني باستخدام API مثل Mailgun أو SendGrid
+            simulateSendResetLink(email, resetLink)
+                .then(() => {
+                    successElement.textContent = 'تم إرسال رابط إعادة التعيين إلى بريدك الإلكتروني';
+                    successElement.style.display = 'block';
+                    
+                    // إعادة تعيين النموذج
+                    document.getElementById('resetForm').reset();
+
+                    // توجيه المستخدم بعد 3 ثواني
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 3000);
+                })
+                .catch(error => {
+                    errorElement.textContent = error.message;
+                    errorElement.style.display = 'block';
+                });
+        });
+
+        // دالة التحقق من صحة البريد الإلكتروني
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // دالة توليد الكود العشوائي
+        function generateCode() {
+            return Math.random().toString(36).substring(2, 10);
+        }
+
+        // دالة لمحاكاة إرسال الرابط إلى البريد (ستستبدلها باستخدام API حقيقية)
+        function simulateSendResetLink(email, resetLink) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const shouldFail = Math.random() > 0.8; // 20% فرصة لفشل المحاكاة
+
+                    if (shouldFail) {
+                        reject(new Error('حدث خطأ أثناء إرسال الرابط. الرجاء المحاولة لاحقًا'));
+                    } else {
+                        console.log(`تم إرسال الرابط إلى: ${email} - الرابط: ${resetLink}`);
+                        resolve();
+                    }
+                }, 1000);
+            });
+        }
+    </script>
+</body>
+</html>
