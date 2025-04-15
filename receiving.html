@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استقبال ملفات</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .amount-box, .link-box {
+            margin: 20px 0;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        button {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0b7dda;
+        }
+        #generated-link {
+            font-weight: bold;
+            color: #4CAF50;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>استقبال ملفات</h1>
+        
+        <div class="amount-box">
+            <label for="amount">المبلغ النقدي:</label>
+            <input type="number" id="amount" placeholder="أدخل المبلغ المطلوب">
+        </div>
+        
+        <div class="link-box">
+            <label for="sender-link">رابط المرسل:</label>
+            <input type="text" id="sender-link" placeholder="أدخل الرابط الذي أعطاه المرسل">
+        </div>
+        
+        <button id="generate-btn">إنشاء رابط</button>
+        
+        <div id="result" style="margin-top: 20px; display: none;">
+            <p>تم إنشاء الرابط بنجاح:</p>
+            <p id="generated-link"></p>
+            <p>قم بإرسال هذا الرابط إلى المرسل</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('generate-btn').addEventListener('click', function() {
+            const amount = document.getElementById('amount').value;
+            const senderLink = document.getElementById('sender-link').value;
+            
+            if (!amount || !senderLink) {
+                alert('الرجاء إدخال جميع البيانات المطلوبة');
+                return;
+            }
+            
+            // هنا يجب إضافة الكود للاتصال بالخادم
+            // هذا مثال فقط للواجهة
+            
+            const generatedLink = 'https://example.com/upload/' + Math.random().toString(36).substring(2, 10);
+            document.getElementById('generated-link').textContent = generatedLink;
+            document.getElementById('result').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
