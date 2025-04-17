@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إرسال ملفات</title>
+    <link rel="stylesheet" href="send.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>إرسال ملفات</h1>
+        
+        <div class="upload-box" id="upload-box">
+            <p>اضغط هنا أو اسحب الملفات لرفعها</p>
+            <input type="file" id="file-input" multiple>
+        </div>
+        
+        <div class="amount-box">
+            <label for="amount">المبلغ المطلوب:</label>
+            <input type="number" id="amount" placeholder="سيتم تعبئته تلقائياً" readonly>
+        </div>
+        
+        <div class="link-box">
+            <label for="receiver-link">رابط المستلم الآمن:</label>
+            <div style="display: flex;">
+                <input type="text" id="receiver-link" placeholder="الصق الرابط الذي أعطاك إياه المستقبل">
+
+            </div>
+        </div>
+        
+        <button id="verify-btn">التحقق من الرابط</button>
+        
+        <div id="result" style="margin-top: 20px; display: none;">
+            <p>الرابط صالح، يمكنك الآن رفع الملفات:</p>
+            <button id="upload-btn">رفع الملفات</button>
+            
+            <div class="security-note">
+                <strong>ملاحظة أمان:</strong>
+                <p>الملفات سترسل فقط بعد التحقق من استلام المبلغ.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('upload-box').addEventListener('click', function() {
+            document.getElementById('file-input').click();
+        });
+        
+        // زر لصق الرابط
+        document.getElementById('paste-btn').addEventListener('click', async function() {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById('receiver-link').value = text;
+            } catch (err) {
+                alert('تعذر الوصول إلى الحافظة، يرجى لصق الرابط يدوياً');
+            }
+        });
+        
+        // زر التحقق من الرابط
+        document.getElementById('verify-btn').addEventListener('click', function() {
+            const receiverLink = document.getElementById('receiver-link').value;
+            
+            if (!receiverLink) {
+                alert('الرجاء إدخال الرابط الذي أعطاه المستقبل');
+                return;
+            }
+            
+            // استخراج المبلغ من الرابط (مثال: TRX-abc123-500)
+            const amountMatch = receiverLink.match(/-(\d+)$/);
+            if (amountMatch) {
+                document.getElementById('amount').value = amountMatch[1];
+                document.getElementById('result').style.display = 'block';
+                alert('تم التحقق من الرابط بنجاح');
+            } else {
+                alert('الرابط غير صالح، يرجى استخدام الرابط الذي أعطاه المستقبل');
+            }
+        });
+        
+        // زر رفع الملفات
+        document.getElementById('upload-btn').addEventListener('click', function() {
+            const files = document.getElementById('file-input').files;
+            if (files.length === 0) {
+                alert('الرجاء اختيار ملفات لرفعها');
+                return;
+            }
+            
+            // هنا يتم إرسال الملفات إلى الخادم
+            alert('جارٍ رفع الملفات... سيتم إرسالها للمستقبل بعد التحقق من الدفع');
+            
+            // في التطبيق الحقيقي: إرسال الملفات إلى الخادم
+            // مع معرّف المعاملة المستخرج من الرابط
+        });
+    </script>
+</body>
+</html>
