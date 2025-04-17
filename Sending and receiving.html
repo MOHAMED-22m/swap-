@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام تبادل الملفات</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="Sending and receiving.css">
+</head>
+<body>
+    <!-- شريط التنقل الجديد -->
+    <div class="navbar">
+        <div class="logo">نظام تبادل الملفات</div>
+        <div class="menu-btn" id="menu-btn">
+            <i class='bx bx-dots-vertical-rounded'></i>
+        </div>
+    </div>
+
+    <!-- القائمة الجانبية -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>القائمة</h3>
+            <span class="close-btn" id="close-btn">&times;</span>
+        </div>
+        <div class="sidebar-content">
+            <div class="user-email" id="user-email">user@example.com</div>
+            <a href="user.html" class="profile-btn">صفحة المستخدم</a>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- المحتوى الأصلي -->
+    <div class="container">
+        <h1>مرحبًا بك في نظام تبادل الملفات</h1>
+        <p>اختر ما تريد القيام به:</p>
+        
+        <a href="send.html" class="btn">إرسال ملفات</a>
+        <a href="receiving.html" class="btn btn-receive">استقبال ملفات</a>
+    </div>
+
+    <script>
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // جلب بيانات المستخدم من localStorage
+    const userEmail = localStorage.getItem('userEmail') || 'user@example.com';
+    const isGuest = localStorage.getItem('guestMode') === 'true';
+    
+    // تحديث البريد في القائمة الجانبية
+    const emailElement = document.getElementById('user-email');
+    emailElement.textContent = isGuest ? 'زائر' : userEmail;
+    
+    // إذا كان ضيفاً، يمكنك إضافة أي إجراءات إضافية هنا
+    if(isGuest) {
+        // إجراءات إضافية للضيف إن وجدت
+    }
+});
+
+// باقي كود القائمة الجانبية كما هو...
+
+
+
+
+
+
+
+
+
+
+
+        // عرض/إخفاء القائمة الجانبية
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        });
+
+        document.getElementById('close-btn').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        });
+
+        document.getElementById('overlay').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        });
+
+        // جلب بيانات المستخدم من localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const userEmail = localStorage.getItem('userEmail') || 'user@example.com';
+            document.getElementById('user-email').textContent = userEmail;
+            
+            // إذا كان المستخدم ضيفاً
+            if(localStorage.getItem('guestMode') === 'true') {
+                document.getElementById('user-email').textContent = 'زائر';
+            }
+        });
+    </script>
+</body>
+</html>

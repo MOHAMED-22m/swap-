@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المستخدم</title>
+    <link rel="stylesheet" href="user.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+    
+    <div class="header">
+        <div class="logo">موقع مقايضة الحسابات</div>
+        <div>مرحبًا، [اسم المستخدم]</div>
+    </div>
+    <div class="user-info">
+        <h2>معلومات الحساب</h2>
+        <p>البريد الإلكتروني: user@example.com</p>
+        <p>تاريخ التسجيل: 2024-06-01</p>
+    </div>
+    <div class="balance">
+        <h3>رصيدك الحالي: 500ج.م</h3>
+        <!-- باقي الكود كما هو -->
+
+        <a href="Sending and receiving.html" class="floating-back-btn">
+            ← الرجوع
+        </a>
+        
+        
+<script>
+
+
+
+window.onload = function() {
+    // جلب جميع بيانات المستخدم من localStorage
+    const isGuest = localStorage.getItem("guestMode") === "true";
+    const userEmail = localStorage.getItem("userEmail") || "user@example.com";
+    const username = localStorage.getItem("username") || userEmail.split('@')[0] || "ضيف";
+    
+    // تحديث واجهة المستخدم
+    document.querySelector(".header div:nth-child(2)").textContent = 
+        `مرحبًا، ${username} ${isGuest ? '(ضيف)' : ''}`;
+    
+    // تحديث معلومات الحساب
+    document.querySelector(".user-info p:nth-child(2)").textContent = 
+        `البريد الإلكتروني: ${userEmail}`;
+    
+    // معالجة حالة الضيف
+    if(isGuest) {
+        document.querySelector(".balance h3").textContent = 
+            "للوصول إلى الرصيد، يرجى تسجيل الدخول";
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    window.onload = function() {
+        const isGuest = localStorage.getItem("guestMode") === "true";
+        const username = localStorage.getItem("username") || "ضيف";
+        
+        // تحديث واجهة المستخدم
+        document.querySelector(".header div:nth-child(2)").textContent = 
+            `مرحبًا، ${username} ${isGuest ? '(ضيف)' : ''}`;
+        
+        if(isGuest) {
+            document.querySelector(".balance h3").textContent = 
+                "للوصول إلى الرصيد، يرجى تسجيل الدخول";
+        }
+    };
+</script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="reset-card">
+        <div class="reset-header">
+            <div class="reset-logo">موقع المقايضة</div>
+            <h1 class="reset-title">تسجيل الدخول</h1>
+            <p class="reset-description">أدخل بريدك الإلكتروني وسنرسل لك رابطًا للدخول إلى النظام</p>
+        </div>
+
+        <div id="errorMessage" class="message error-message"></div>
+        <div id="successMessage" class="message success-message"></div>
+
+        <form id="resetForm" class="reset-form">
+            <div class="form-group">
+                <label for="email" class="form-label">البريد الإلكتروني</label>
+                <input type="email" id="email" class="form-input" placeholder="example@domain.com" required>
+            </div>
+
+            <button type="submit" class="reset-btn">إرسال رابط الدخول</button>
+        </form>
+
+        <div><button class="back-link" onclick="window.location.href='homepage.html'">العودة إلى الصفحة الرئيسية</button></div>
+    </div>
+
+    <script>
+
+
+document.getElementById('resetForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const errorElement = document.getElementById('errorMessage');
+    const successElement = document.getElementById('successMessage');
+
+    errorElement.style.display = 'none';
+    successElement.style.display = 'none';
+
+    if (!validateEmail(email)) {
+        errorElement.textContent = 'الرجاء إدخال بريد إلكتروني صحيح';
+        errorElement.style.display = 'block';
+        return;
+    }
+
+    // حفظ البيانات المهمة في localStorage
+    localStorage.setItem('userEmail', email);
+    localStorage.setItem('guestMode', 'false');
+    localStorage.setItem('username', email.split('@')[0]); // حفظ اسم المستخدم من البريد
+
+    simulateSendEntryLink(email, `https://yourdomain.com/entry.html?email=${encodeURIComponent(email)}`)
+        .then(() => {
+            successElement.textContent = 'تم إرسال رابط الدخول إلى بريدك الإلكتروني';
+            successElement.style.display = 'block';
+            window.location.href = "Sending and receiving.html";
+        })
+        .catch(error => {
+            errorElement.textContent = error.message;
+            errorElement.style.display = 'block';
+        });
+});
+
+// باقي الدوال كما هي...
+
+
+
+
+
+
+        document.getElementById('resetForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const errorElement = document.getElementById('errorMessage');
+            const successElement = document.getElementById('successMessage');
+
+            // إخفاء الرسائل السابقة
+            errorElement.style.display = 'none';
+            successElement.style.display = 'none';
+
+            // التحقق من صحة البريد الإلكتروني
+            if (!validateEmail(email)) {
+                errorElement.textContent = 'الرجاء إدخال بريد إلكتروني صحيح';
+                errorElement.style.display = 'block';
+                return;
+            }
+
+            // هنا يتم إنشاء الرابط المؤقت للدخول مباشرة إلى صفحة الاختيار
+            const entryLink = `https://yourdomain.com/entry.html?email=${encodeURIComponent(email)}`;
+
+            // محاكاة إرسال البريد الإلكتروني
+            simulateSendEntryLink(email, entryLink)
+                .then(() => {
+                    successElement.textContent = 'تم إرسال رابط الدخول إلى بريدك الإلكتروني';
+                    successElement.style.display = 'block';
+                    
+                    // توجيه المستخدم إلى صفحة الاختيار مباشرة (بدلاً من الانتظار)
+                    window.location.href = "Sending and receiving.html";
+                })
+                .catch(error => {
+                    errorElement.textContent = error.message;
+                    errorElement.style.display = 'block';
+                });
+        });
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function simulateSendEntryLink(email, entryLink) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log(`رابط الدخول المرسل إلى ${email}: ${entryLink}`);
+                    resolve();
+                }, 1000);
+            });
+        }
+    </script>
+</body>
+</html>
