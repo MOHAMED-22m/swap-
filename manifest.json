@@ -1,47 +1,15 @@
 {
-  "name": "Swap Me - سوق المقايضة الرقمية",
+  "name": "Swap Me",
   "short_name": "SwapMe",
   "start_url": "/",
-  "scope": "/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
-  "description": "أكبر سوق للمقايضة الرقمية - بيع وشراء الحسابات بكل أمان وسهولة",
-  "dir": "rtl",
-  "lang": "ar",
-  "orientation": "portrait",
   "icons": [
     {
       "src": "logo.jpg",
       "sizes": "192x192",
-      "type": "image/jpeg",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "logo.jpg",
-      "sizes": "512x512",
-      "type": "image/jpeg",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "categories": ["finance", "shopping", "social"],
-  "screenshots": [
-    {
-      "src": "screenshot1.jpg",
-      "sizes": "1080x1920",
       "type": "image/jpeg"
-    }
-  ],
-  "related_applications": [
-    {
-      "platform": "webapp",
-      "url": "https://yourwebsite.com/manifest.json"
     }
   ]
 }
