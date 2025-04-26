@@ -1,7 +1,7 @@
 {
   "name": "Swap App",
   "short_name": "Swap",
-  "start_url": "/",
+  "start_url": "/swap-/",
   "display": "standalone",
   "background_color": "#ffffff",
   "description": "تطبيق لتبادل الحسابات.",
