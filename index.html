@@ -5,28 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>swap me</title> 
 
-<link rel="icon" type="image/jpeg" href="logo.jpg">
-<link rel="icon" href="logo.jpg" type="image/jpeg">
-<link rel="shortcut icon" href="logo.jpg" type="image/jpeg"> <!-- لدعم متصفحات قديمة -->
-<link rel="icon" type="image/jpg" href="logo.jpg">
-<link rel="icon" type="image/jpeg" href="logo.jpg">
-    
-    <!-- لأجهزة Apple -->
-    
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-<!-- لـ Android -->
-<link rel="icon" sizes="192x192" href="icon-192x192.png">
-    
-    <link rel="manifest" href="/manifest.json" />
+    <!-- أيقونة الموقع -->
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="logo.jpg" type="image/jpeg">
     <link rel="stylesheet" href="style.css">
-    
-    <img src="logo.html" alt="Logo" width="50" height="50">
-    
-    
-    
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
     
@@ -42,26 +25,16 @@
             <button class="btn" id="loginBtn" onclick="window.open('login.html', '_blank')">
                 تسجيل الدخول / إنشاء حساب
             </button> 
-
-
-
-
-            <!-- ليس له لزمه  -->
-            <!-- <button class="btn btn-guest" id="guestBtn" onclick="window.open('production.html', '_blank')"> 
-                الدخول كضيف
-            </button>-->
             <button class="btn btn-contact" id="contactBtn" onclick="window.open('https://wa.me/201061366367', '_blank')">
                 تواصل معنا
             </button>
         </div>
     </div>
 
-    <!-- زر القائمة في الزاوية -->
     <button class="menu-btn" id="menuBtn">
         <i class='bx bx-menu'></i>
     </button>
 
-    <!-- النافذة الجانبية -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h3>القائمة الجانبية</h3>
@@ -74,20 +47,14 @@
             <button class="sidebar-btn" onclick="window.open('login.html', '_blank')">
                 <i class='bx bx-log-in'></i> تسجيل الدخول
             </button>
-            <!-- <button class="sidebar-btn" onclick="window.open('register.html', '_blank')">
-                <i class='bx bx-user-plus'></i> إنشاء حساب
-            </button> -->
             <button class="sidebar-btn" onclick="window.open('https://wa.me/201061366367', '_blank')">
                 <i class='bx bx-envelope'></i> تواصل معنا
             </button>
         </div>
     </div>
 
-    <!-- طبقة التعتيم -->
     <div class="overlay" id="overlay"></div>
- 
 
-    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuBtn = document.getElementById('menuBtn');
